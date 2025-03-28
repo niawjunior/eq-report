@@ -163,7 +163,7 @@ export default function ReportsPage() {
                     : "bg-green-500 text-white"
                 }`}
               >
-                {report.severity}
+                {mapSeverityToText(report.severity)}
               </span>
             </div>
             <p className="text-sm text-gray-600 line-clamp-2">
