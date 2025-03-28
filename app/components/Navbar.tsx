@@ -6,9 +6,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/report", label: "Report Damage" },
-  { href: "/reports", label: "View Reports" },
+  { href: "/", label: "หน้าแรก" },
+  { href: "/report", label: "รายงานความเสียหาย" },
+  { href: "/reports", label: "ดูคนที่ต้องการความช่วยเหลือ" },
 ];
 
 export default function Navbar() {
@@ -16,7 +16,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md px-4 py-3 sticky top-0 z-50">
+    <nav className="bg-white shadow-md px-4 py-3 sticky top-0 z-[999999]">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-lg font-bold text-red-600">

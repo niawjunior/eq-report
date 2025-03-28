@@ -27,7 +27,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          Earthquake Damage Report Platform
+          แพลตฟอร์มรายงานความเสียหายจากแผ่นดินไหว
         </motion.h1>
 
         <motion.p
@@ -36,8 +36,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          Report earthquake damage in your area to help responders act quickly
-          and save lives.
+          รายงานความเสียหายในพื้นที่ของคุณเพื่อช่วยให้เจ้าหน้าที่สามารถตอบสนองได้อย่างรวดเร็วและช่วยชีวิตผู้ประสบภัย
         </motion.p>
 
         <motion.div
@@ -50,13 +49,13 @@ export default function Home() {
               href="/report"
               className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-md transition"
             >
-              Report Damage
+              รายงานความเสียหาย
             </Link>
             <Link
               href="/reports"
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-md transition text-center"
             >
-              See People Who Need Help
+              ดูคนที่ต้องการความช่วยเหลือ
             </Link>
           </div>
         </motion.div>

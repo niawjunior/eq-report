@@ -17,6 +17,7 @@ export default function ReportPage() {
   const [severity, setSeverity] = useState("low");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [contactInfo, setContactInfo] = useState("");
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -89,6 +90,7 @@ export default function ReportPage() {
           image_url,
           latitude: selectedCoords?.lat,
           longitude: selectedCoords?.lng,
+          contact_info: contactInfo,
         },
       ]);
 
@@ -116,11 +118,9 @@ export default function ReportPage() {
               className="bg-white p-6 rounded-xl shadow-xl text-center max-w-sm w-[90%]"
             >
               <h2 className="text-xl font-bold text-green-600 mb-2">
-                Report Submitted ✅
+                รายงานความเสียหายเรียบร้อย ✅
               </h2>
-              <p className="text-gray-700">
-                Thank you for helping the community. Redirecting...
-              </p>
+              <p className="text-gray-700">ขอบคุณที่ช่วยให้ชีวิตผู้ประสบภัย</p>
             </motion.div>
           </div>
         )}
@@ -130,14 +130,12 @@ export default function ReportPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-xl bg-gray-50 rounded-xl shadow p-6 space-y-4"
       >
-        <h2 className="text-2xl font-bold text-gray-800">
-          Report Earthquake Damage
-        </h2>
+        <h2 className="text-2xl font-bold text-gray-800">รายงานความเสียหาย</h2>
 
         <textarea
           className="w-full border rounded p-2"
           rows={4}
-          placeholder="Describe the damage..."
+          placeholder="อธิบายความเสียหาย..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -145,7 +143,7 @@ export default function ReportPage() {
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">
-            Select Location on Map
+            ตำแหน่งที่เกิดความเสียหาย
           </label>
           <div className="h-60 rounded-lg overflow-hidden border">
             <MapPicker
@@ -155,7 +153,7 @@ export default function ReportPage() {
           </div>
           {selectedCoords && (
             <p className="text-sm text-gray-600">
-              Selected: {selectedCoords.lat.toFixed(5)},{" "}
+              ตำแหน่งที่เกิดความเสียหาย: {selectedCoords.lat.toFixed(5)},{" "}
               {selectedCoords.lng.toFixed(5)}
             </p>
           )}
@@ -164,25 +162,35 @@ export default function ReportPage() {
         <input
           type="text"
           className="w-full border rounded p-2"
-          placeholder="Location"
+          placeholder="ที่อยู่"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           required
         />
 
+        <input
+          type="text"
+          className="w-full border rounded p-2"
+          placeholder="ติดต่อ (โทรศัพท์, Line, หรือ Facebook)"
+          value={contactInfo}
+          onChange={(e) => setContactInfo(e.target.value)}
+        />
+        <p className="text-sm text-gray-500">
+          * เจ้าหน้าเท่านั้นที่จัดการภัยพิบัติจะเห็นข้อมูลนี้
+        </p>
         <select
           className="w-full border rounded p-2"
           value={severity}
           onChange={(e) => setSeverity(e.target.value)}
         >
-          <option value="low">Low severity</option>
-          <option value="medium">Medium severity</option>
-          <option value="high">High severity</option>
+          <option value="low">ความรุนแรงต่ำ</option>
+          <option value="medium">ความรุนแรงปานกลาง</option>
+          <option value="high">ความรุนแรงสูง</option>
         </select>
 
         <div className="space-y-1">
           <label className="block text-sm font-medium text-gray-700">
-            Upload Image (optional)
+            รูปภาพ (ไม่จำเป็น)
           </label>
 
           <div className="relative flex items-center space-x-2">
@@ -228,7 +236,7 @@ export default function ReportPage() {
           disabled={loading}
           className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded font-semibold transition"
         >
-          {loading ? "Submitting..." : "Submit Report"}
+          {loading ? "กำลังส่ง..." : "ส่งรายงาน"}
         </button>
       </form>
     </div>

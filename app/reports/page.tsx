@@ -25,6 +25,31 @@ export default function ReportsPage() {
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [showMobileDetail, setShowMobileDetail] = useState(false);
 
+  const mapSeverityToText = (severity: string) => {
+    switch (severity) {
+      case "high":
+        return "ความรุนแรง: สูง";
+      case "medium":
+        return "ความรุนแรง: กลาง";
+      case "low":
+        return "ความรุนแรง: ต่ำ";
+      default:
+        return "ความรุนแรง: ไม่ระบุ";
+    }
+  };
+
+  const mapStatusToText = (status: string) => {
+    switch (status) {
+      case "pending":
+        return "สถานะ: รอการช่วยเหลือ";
+      case "in-progress":
+        return "สถานะ: กำลังช่วยเหลือ";
+      case "helped":
+        return "สถานะ: ช่วยเหลือเสร็จสิ้น";
+      default:
+        return "สถานะ: ไม่ระบุ";
+    }
+  };
   useEffect(() => {
     const fetchReports = async () => {
       const { data, error } = await supabase
@@ -65,7 +90,7 @@ export default function ReportsPage() {
                     : "bg-green-100 text-green-700"
                 }`}
               >
-                Severity: {selectedReport.severity}
+                {mapSeverityToText(selectedReport.severity)}
               </span>
 
               <span
@@ -77,7 +102,7 @@ export default function ReportsPage() {
                     : "bg-gray-200 text-gray-700"
                 }`}
               >
-                {selectedReport.status}
+                {mapStatusToText(selectedReport.status)}
               </span>
             </div>
             {selectedReport.image_url && (
@@ -95,7 +120,7 @@ export default function ReportsPage() {
             </p>
 
             <p className="text-sm text-gray-400">
-              Location: {selectedReport.location}
+              ตำแหน่งที่เกิดความเสียหาย: {selectedReport.location}
             </p>
             {selectedReport.latitude && selectedReport.longitude && (
               <MapDisplay
@@ -104,7 +129,7 @@ export default function ReportsPage() {
               />
             )}
             <p className="text-sm text-gray-400 mt-2">
-              Reported on:{" "}
+              รายงานเมื่อ:{" "}
               {new Date(selectedReport.created_at).toLocaleString()}
             </p>
           </div>
@@ -168,7 +193,7 @@ export default function ReportsPage() {
                     : "bg-green-100 text-green-700"
                 }`}
               >
-                Severity: {selectedReport.severity}
+                {mapSeverityToText(selectedReport.severity)}
               </span>
 
               <span
@@ -180,7 +205,7 @@ export default function ReportsPage() {
                     : "bg-gray-200 text-gray-700"
                 }`}
               >
-                {selectedReport.status}
+                {mapStatusToText(selectedReport.status)}
               </span>
             </div>
             {selectedReport.image_url && (
@@ -197,11 +222,11 @@ export default function ReportsPage() {
               {selectedReport.description}
             </p>
             <p className="text-sm text-gray-400">
-              Reported on:{" "}
+              รายงานเมื่อ:{" "}
               {new Date(selectedReport.created_at).toLocaleString()}
             </p>
             <p className="text-sm text-gray-400">
-              Location: {selectedReport.location}
+              ตำแหน่งที่เกิดความเสียหาย: {selectedReport.location}
             </p>
 
             {selectedReport.latitude && selectedReport.longitude && (
@@ -212,7 +237,7 @@ export default function ReportsPage() {
             )}
           </div>
         ) : (
-          <p className="text-gray-500">Select a report to see details.</p>
+          <p className="text-gray-500">เลือกรายงานเพื่อดูรายละเอียด</p>
         )}
       </div>
     </div>
