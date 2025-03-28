@@ -194,7 +194,7 @@ export default function ReportsPage() {
       {/* Right Panel - Report Details */}
       <div className="hidden md:block w-2/3 bg-white p-6 overflow-y-auto">
         {selectedReport ? (
-          <div className="space-y-4">
+          <div className="space-y-1">
             <h2 className="text-2xl font-bold text-red-600">
               {selectedReport.location}
             </h2>
@@ -212,7 +212,7 @@ export default function ReportsPage() {
               </span>
 
               <span
-                className={`text-sm font-semibold px-2 py-1 rounded-full ${
+                className={`text-sm font-semibold px-2 rounded-full ${
                   selectedReport.status === "helped"
                     ? "bg-green-100 text-green-700"
                     : selectedReport.status === "in-progress"
@@ -229,13 +229,11 @@ export default function ReportsPage() {
                 alt="Damage"
                 width={300}
                 height={300}
-                className="rounded-lg w-full max-h-[300px] object-cover"
+                className="rounded-lg w-full max-h-[200px] object-cover"
               />
             )}
 
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {selectedReport.description}
-            </p>
+            <p className="text-gray-700 ">{selectedReport.description}</p>
             <p className="text-sm text-gray-400">
               รายงานเมื่อ:{" "}
               {new Date(selectedReport.created_at).toLocaleString()}
