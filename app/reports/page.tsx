@@ -24,6 +24,7 @@ export default function ReportsPage() {
   const [reports, setReports] = useState<Report[]>([]);
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [showMobileDetail, setShowMobileDetail] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const mapSeverityToText = (severity: string) => {
     switch (severity) {
@@ -52,6 +53,8 @@ export default function ReportsPage() {
   };
   useEffect(() => {
     const fetchReports = async () => {
+      setLoading(true); // ← start loading
+
       const { data, error } = await supabase
         .from("damage_reports")
         .select("*")
@@ -63,11 +66,23 @@ export default function ReportsPage() {
         // default select first report
         setSelectedReport(data[0] as Report);
       }
+
+      setLoading(false); // ← stop loading
     };
 
     fetchReports();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-[calc(100vh-5rem)] bg-white">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-600">กำลังโหลดข้อมูลรายงาน...</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex h-[calc(100vh-150px)]">
       {showMobileDetail && selectedReport && (
