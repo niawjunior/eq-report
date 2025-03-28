@@ -87,7 +87,7 @@ export default function ReportsPage() {
     <div className="flex h-[calc(100vh-150px)]">
       {showMobileDetail && selectedReport && (
         <div className="md:hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4 ">
-          <div className="bg-white w-full max-w-md mx-auto rounded-xl shadow-xl p-6 relative max-h-[400px] overflow-y-auto">
+          <div className="bg-white w-full max-w-md mx-auto rounded-xl shadow-xl p-6 relative max-h-[600px] overflow-y-auto">
             <button
               onClick={() => setShowMobileDetail(false)}
               className="absolute top-2 right-3 text-gray-400 hover:text-red-500 text-4xl font-bold"
@@ -125,8 +125,8 @@ export default function ReportsPage() {
                 src={selectedReport.image_url}
                 alt="Damage"
                 width={300}
-                height={300}
-                className="rounded-lg mt-2 w-full max-h-[300px] object-cover"
+                height={200}
+                className="rounded-lg mt-2 w-full max-h-[200px] object-cover"
               />
             )}
 
